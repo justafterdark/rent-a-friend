@@ -46,7 +46,6 @@ puts 'Creating 20 Mobfriend Users...'
     age: rand(20..70),
     gender: %w(male female).sample,
     language: %w(english chinese malay tamil).sample,
-    photo_url: 'https://source.unsplash.com/600x400/?person,face',
     hourly_rate: rand(5..30)
   )
   p new_mobfriend

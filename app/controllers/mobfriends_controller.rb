@@ -53,7 +53,7 @@ class MobfriendsController < ApplicationController
   end
 
   def mobfriend_new_params
-    params.require(:mobfriend).permit(:first_name, :last_name, :hourly_rate, :tagline, :age, :gender, :language, :photo_url, :bio)
+    params.require(:mobfriend).permit(:first_name, :last_name, :hourly_rate, :tagline, :age, :gender, :language, :photo, :bio)
   end
 
   def mobfriend_edit_params

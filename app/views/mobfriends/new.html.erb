@@ -19,7 +19,8 @@
   <%= f.input :age %>
   <%= f.input :gender %>
   <%= f.input :language %>
-  <%= f.input :photo_url %>
+  <%= f.input :photo %>
+  <%= f.input :photo_cache, as: :hidden %>
   <%= f.input :bio %>
   <%= f.button :submit, class: 'btn btn-primary' %>
   <% end %>
