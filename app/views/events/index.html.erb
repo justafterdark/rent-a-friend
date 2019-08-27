@@ -1,12 +1,19 @@
-<h1>Index</h1>
-<% @events.each do |e| %>
-<ul>
-<li>Event ID: <%= e.id  %></li>
-<li>Event Description: <%= link_to e.description, event_path(e) %></li>
-<li>Event User ID: <%= e.user_id %></li>
-<li><%= e.datetime %></li>
-<li>Event Confirmation: <%= e.confirmed  %></li>
-</ul>
-<% end %>
+<div class="container">
+  <h1 class='text-center my-5'>Event Index</h1>
+  <% @events.each do |e| %>
+  <div class="row">
+    <div class="col-md-6 col-lg-4">
+      <div class="card"></div>
+      <ul>
+      <li>Event ID: <%= e.id  %></li>
+      <li>Event Description: <%= link_to e.description, event_path(e) %></li>
+      <li>Event User ID: <%= e.user_id %></li>
+      <li><%= e.datetime %></li>
+      <li>Event Confirmation: <%= e.confirmed  %></li>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>
 
 

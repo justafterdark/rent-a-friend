@@ -28,6 +28,7 @@ puts 'Creating 10 events...'
   event.save
 end
 
+adjective_arr = %w(young old slim fat tall chinese asian african european happy sad angry gangster)
 puts 'Creating 20 Mobfriend Users...'
 20.times do
   new_user = User.create(
@@ -46,7 +47,7 @@ puts 'Creating 20 Mobfriend Users...'
     age: rand(20..70),
     gender: %w(male female).sample,
     language: %w(english chinese malay tamil).sample,
-    photo_url: 'https://source.unsplash.com/600x400/?person,face',
+    photo_url: "https://source.unsplash.com/600x400/?human,#{adjective_arr.sample}",
     hourly_rate: rand(5..30)
   )
   p new_mobfriend
