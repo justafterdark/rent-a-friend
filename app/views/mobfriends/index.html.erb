@@ -2,10 +2,12 @@
 <div class="mobfriends-container container">
   <div class="row">
     <% @mobfriends.each do |mobfriend| %>
-    <div class="col-md-3">
-        <div class="mobfriend-card text-center rounded shadow-sm my-3 pb-3">
-        <%= link_to image_tag(mobfriend.photo_url, width: '100%'), mobfriend_path(mobfriend) %>
-        <div class="mobfriend-card-tagline" style="height: 80px">
+    <div class="col-md-6 col-lg-4">
+      <div class="mobfriend-card text-center bg-light rounded shadow-sm my-3 pb-3">
+        <div class="mobfriend-card-image-container">
+          <%= link_to image_tag(mobfriend.photo_url, width: '100%'), mobfriend_path(mobfriend) %>
+        </div>
+        <div class="mobfriend-card-tagline my-3" style="height: 90px">
           <p>
             "<% if mobfriend.tagline.length > 65 %>
             <%= mobfriend.tagline[0..65] %>...
@@ -18,10 +20,8 @@
           <p>$<%= mobfriend.hourly_rate %>/hr</p>
           <div class="btn btn-info"><%= link_to 'View', mobfriend_path(mobfriend) %></div>
         </div>
+      </div>
     </div>
-    </div>
-
   <% end %>
-
   </div>
 </div>
