@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_events, only: [:index]
-  before_action :set_event, only: [:show, :edit]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
   end
@@ -27,6 +27,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+   @categories = ["wedding", "birthday", "social"]
+   # get event type
+   @type = @event.event_type
   end
 
   def update
