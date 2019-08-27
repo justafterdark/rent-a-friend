@@ -3,7 +3,7 @@
   <div class="row">
     <% @mobfriends.each do |mobfriend| %>
     <div class="col-md-3">
-        <div class="mobfriend-card text-center bg-light rounded shadow-sm my-3 pb-3">
+        <div class="mobfriend-card text-center rounded shadow-sm my-3 pb-3">
         <%= link_to image_tag(mobfriend.photo_url, width: '100%'), mobfriend_path(mobfriend) %>
         <div class="mobfriend-card-tagline" style="height: 80px">
           <p>
