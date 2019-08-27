@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :events
-  has_one :mobfriend
+  has_many :events, dependent: :destroy
+  has_one :mobfriend, dependent: :destroy
   has_many :jobs, through: :mobfriend
 end
