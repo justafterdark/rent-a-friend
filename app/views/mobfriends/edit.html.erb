@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Edit Profile</h1>
+</div>
+<div class="form mobfriend-form">
+  <%= simple_form_for @mobfriend do |f|%>
+  <% if @mobfriend.errors.any? %>
+      <div class="errors-container">
+        <ul>
+          <% @mobfriend.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%= f.input :tagline %>
+  <%= f.input :hourly_rate %>
+  <%= f.input :language %>
+  <%= f.input :photo_url %>
+  <%= f.input :bio %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>
