@@ -1,5 +1,5 @@
-<div class="mobfriend-name text-center my-5">
-  <h1><%= @mobfriend.first_name %> <%= @mobfriend.last_name %></h1>
+<div class="page-header text-center my-5">
+  <h1><%= @mobfriend.first_name.capitalize %> <%= @mobfriend.last_name.capitalize %></h1>
 </div>
 <div class="container">
   <div class="row">
@@ -11,9 +11,11 @@
       <p><strong>Asking Rate: </strong><%= @mobfriend.hourly_rate %>/hour</p>
       <p><strong>Age: </strong><%= @mobfriend.age %></p>
       <p><strong>Gender: </strong><%= @mobfriend.gender %></p>
-      <p><strong>Language: </strong><%= @mobfriend.language %></p>
+      <p><strong>Language: </strong><%= @mobfriend.language.capitalize %></p>
       <p><strong>Bio: </strong><%= @mobfriend.bio %></p>
     </div>
   </div>
-
+<div class="back-btn">
+  <%= link_to 'Back', mobfriends_path, class: 'btn btn-info' %>
+</div>
 </div>
