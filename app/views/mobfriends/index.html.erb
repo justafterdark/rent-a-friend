@@ -1,3 +1,4 @@
+<%= render 'shared/navbar' %>
 <h1 class='text-center my-5'>Select a Mobfriend</h1>
 <div class="mobfriends-container container">
   <div class="row">
@@ -6,7 +7,13 @@
       <div class="mobfriend-card text-center bg-light rounded shadow-sm my-2">
 
         <div class="mobfriend-card-image-container">
-          <%= link_to image_tag(mobfriend.photo_url, width: '100%'), mobfriend_path(mobfriend) %>
+          <%= link_to mobfriend_path(mobfriend) do %>
+            <% if mobfriend.photo.url.nil? %>
+              <%= image_tag('https://source.unsplash.com/600x400/?person,face', width: '100%') %>
+            <% else %>
+              <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
+            <% end %>
+          <% end %>
         </div>
 
         <div class="mobfriend-card-tagline my-2" style="height: 40px">
