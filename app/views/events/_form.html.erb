@@ -1,0 +1,18 @@
+<div class="container">
+    <h1>Create a new event</h1>
+    <%= simple_form_for [@event] do |e| %>
+      <%= e.input :datetime %>
+      <!-- 'event[category]' formats the data into a key value pair (eg. Hash) -->
+      <!-- 'form-control' is a bootstrap class to beautify the dropdown -->
+      <select name="event[category]" class="form-control" id="">
+        <% @categories.each do |c| %>
+          <option value="<%= c %>" <%= 'selected' if @type == c %>> <%= c %></option>
+        <% end %>
+      </select>
+      <%= e.input :description %>
+      <%= e.input :event_location %>
+      <%= e.input :meeting_location %>
+      <% e.input :confirmed %>
+      <%= e.submit "add an event", class: "btn btn-primary" %>
+    <% end %>
+</div>
