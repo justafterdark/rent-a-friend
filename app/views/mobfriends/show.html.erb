@@ -5,7 +5,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-      <%= image_tag(@mobfriend.photo_url, width: '100%') %>
+      <%= link_to mobfriend_path(@mobfriend) do %>
+        <% if @mobfriend.photo.url.nil? %>
+          <%= image_tag('https://source.unsplash.com/600x400/?person,face', width: '100%') %>
+        <% else %>
+          <img src=<%= cl_image_path @mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
+        <% end %>
+      <% end %>
       <p><%= @mobfriend.tagline %></p>
     </div>
     <div class="col-lg-8">
