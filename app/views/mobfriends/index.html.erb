@@ -4,7 +4,7 @@
   <div class="row">
     <% @mobfriends.each do |mobfriend| %>
     <div class="col-md-6 col-lg-4">
-      <div class="mobfriend-card text-center bg-light rounded shadow-sm my-3 pb-3">
+      <div class="mobfriend-card text-center bg-light shadow-sm my-3 pb-3">
         <div class="mobfriend-card-image-container">
           <%= link_to mobfriend_path(mobfriend) do %>
             <% if mobfriend.photo.url.nil? %>
@@ -14,7 +14,11 @@
             <% end %>
           <% end %>
         </div>
-        <div class="mobfriend-card-tagline my-3" style="height: 90px">
+        <div class="mobfriend-details">
+          <p><%= "#{mobfriend.first_name} #{mobfriend.last_name}" %></p>
+          <p>$<%= mobfriend.hourly_rate %>/hr</p>
+        </div>
+        <div class="mobfriend-card-tagline">
           <p>
             "<% if mobfriend.tagline.length > 65 %>
             <%= mobfriend.tagline[0..65] %>...
@@ -23,9 +27,10 @@
             <% end %>"
           </p>
         </div>
-        <div class="mobfriend-card-details d-flex justify-content-around">
-          <p>$<%= mobfriend.hourly_rate %>/hr</p>
-          <div class="btn btn-info"><%= link_to 'View', mobfriend_path(mobfriend) %></div>
+        <div class="mobfriend-buttons">
+          <div class="btn btn-info">
+            <%= link_to 'View', mobfriend_path(mobfriend) %>
+          </div>
           <%= simple_form_for [mobfriend, @job] do |f| %>
           <%= f.button :submit, value: 'Add to booking', class: 'btn btn-primary' %>
           <% end %>
