@@ -1,5 +1,5 @@
 <%= render 'shared/navbar' %>
-<div class="page-header text-center my-5">
+<div class="header text-center my-5">
   <h1><%= @mobfriend.first_name.capitalize %> <%= @mobfriend.last_name.capitalize %></h1>
 </div>
 <div class="container">
@@ -22,7 +22,10 @@
       <p><strong>Bio: </strong><%= @mobfriend.bio %></p>
     </div>
   </div>
-<div class="back-btn">
+<div class="buttons-container">
   <%= link_to 'Back', mobfriends_path, class: 'btn btn-info' %>
+  <%= simple_form_for [@mobfriend, @job] do |f| %>
+  <%= f.button :submit, value: 'Add to booking', class: 'btn btn-primary' %>
+  <% end %>
 </div>
 </div>

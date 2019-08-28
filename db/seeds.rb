@@ -46,7 +46,7 @@ puts 'Creating 20 Mobfriend Users...'
     age: rand(20..70),
     gender: %w(male female).sample,
     language: %w(english chinese malay tamil).sample,
-    hourly_rate: rand(5..30)
+    hourly_rate: rand(25..1000)
   )
   p new_mobfriend
 end
