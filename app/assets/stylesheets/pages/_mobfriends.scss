@@ -1,0 +1,30 @@
+.mobfriend-card {
+  border-radius: 6px;
+}
+
+.mobfriend-card-tagline {
+  margin: 5px;
+  font-style: italic;
+  height: 90px;
+}
+
+.mobfriend-details {
+  margin: 0px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  background-color: $light-gray;
+}
+
+.mobfriend-buttons {
+  display: flex;
+  justify-content: space-around;
+  a {
+    color: #FFF;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
