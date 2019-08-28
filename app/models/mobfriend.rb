@@ -12,5 +12,5 @@ class Mobfriend < ApplicationRecord
   validates :age, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 18, less_than: 100 }
   validates :gender, presence: true, inclusion: { in: %w[male female] }
   validates :language, presence: true
-  validates :hourly_rate, presence: true, numericality: { only_integer: true }
+  validates :hourly_rate, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 25 }
 end

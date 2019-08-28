@@ -1,13 +1,58 @@
 <%= render 'shared/navbar' %>
-<h1>Events#show</h1>
+<div class="header">
+  <h1>Current Booking</h1>
+</div>
 
-<ul>
-<li>Event ID: <%= @event.id  %></li>
-<li>Event Description: <%= @event.description %></li>
-<li>Event User ID: <%= @event.user_id %></li>
-<li><%= @event.datetime %></li>
-<li>Event Confirmation: <%= @event.confirmed  %></li>
-</ul>
-<%= link_to('All Events', events_path) %>
-<%= link_to('Edit Event', edit_event_path) %>
-<%= link_to('Delete Event', event_path(@event), method: :delete) %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <%= image_tag("https://source.unsplash.com/600x400/?#{@event.event_type}", width: '100%') %>
+    </div>
+    <div class="col-lg-8 my-5">
+      <ul>
+        <!-- <li>Event ID: <%= @event.id  %></li> -->
+        <li>Description: <%= @event.description %></li>
+        <!-- <li>Event User ID: <%= @event.user_id %></li> -->
+        <li>Time: <%= @date %></li>
+        <% if @event.confirmed %>
+          <li>Status: Confirmed</li>
+        <% else %>
+          <li>Status: Unconfirmed</li>
+          <%= simple_form_for @event do |f| %>
+          <%= f.hidden_field :confirmed, value: true %>
+          <%= f.button :submit, class: 'btn btn-primary my-5' %>
+          <% end %>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center my-5">
+    <%= link_to('All Events', events_path, class: 'btn btn-light mx-3') %>
+    <%= link_to('Edit Event', edit_event_path, class: 'btn btn-light mx-3') %>
+    <%= link_to('Delete Event', @event, method: :delete, class: 'btn btn-light mx-3') %>
+  </div>
+  <h2>Your Mobfriends</h2>
+  <div class="row">
+    <div class="mobfriends-avatar-container container">
+      <div class="row">
+        <% @event.jobs.each do |job| %>
+          <div class="mobfriend-card text-center bg-light rounded shadow-sm my-3 pb-3 col-md-6 col-lg-4">
+            <div class="mobfriend-card-image-container">
+              <%= link_to mobfriend_path(job.mobfriend) do %>
+                <% if job.mobfriend.photo.url.nil? %>
+                  <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{job.mobfriend.gender},face", width: '100%') %>
+                <% else %>
+                  <img src=<%= cl_image_path job.mobfriend.photo, crop: :fill %> alt=<%= job.mobfriend.user.username %> style="width: 100%">
+                <% end %>
+              <% end %>
+            </div>
+            <p><%= job.mobfriend.first_name %></p>
+            <div class="btn btn-info"><%= link_to 'View', mobfriend_path(job.mobfriend) %></div>
+            <div class="btn btn-danger"><%= link_to 'Delete', job_path(job), method: :delete %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

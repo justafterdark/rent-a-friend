@@ -26,6 +26,9 @@
         <div class="mobfriend-card-details d-flex justify-content-around">
           <p>$<%= mobfriend.hourly_rate %>/hr</p>
           <div class="btn btn-info"><%= link_to 'View', mobfriend_path(mobfriend) %></div>
+          <%= simple_form_for [mobfriend, @job] do |f| %>
+          <%= f.button :submit, value: 'Add to booking', class: 'btn btn-primary' %>
+          <% end %>
         </div>
       </div>
     </div>

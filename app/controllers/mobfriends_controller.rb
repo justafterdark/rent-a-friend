@@ -20,9 +20,11 @@ class MobfriendsController < ApplicationController
   # READ: index & show
   def index
     @adjective_arr = %w[young old slim fat tall chinese asian african european happy sad angry gangster]
+    @job = Job.new
   end
 
   def show
+    @job = Job.new
   end
 
   # UPDATE: edit (form) & update

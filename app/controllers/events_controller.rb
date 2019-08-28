@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @date = format_datetime(@event.datetime)
   end
 
   # form only
@@ -27,9 +28,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-   @categories = ["wedding", "birthday", "social"]
-   # get event type
-   @type = @event.event_type
+    @categories = ["wedding", "birthday", "social"]
+    # get event type
+    @type = @event.event_type
   end
 
   def update
@@ -54,5 +55,17 @@ class EventsController < ApplicationController
 
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def format_datetime(datetime)
+    hour = datetime.hour
+    min = datetime.min
+    date = datetime.to_date
+    suffix = 'AM'
+    if hour > 12
+      hour -= 12
+      suffix = 'PM'
+    end
+    "#{date}, #{hour}:#{min} #{suffix}"
   end
 end
