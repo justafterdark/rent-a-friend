@@ -8,7 +8,7 @@
         <div class="mobfriend-card-image-container">
           <%= link_to mobfriend_path(mobfriend) do %>
             <% if mobfriend.photo.url.nil? %>
-              <%= image_tag('https://source.unsplash.com/600x400/?person,face', width: '100%') %>
+              <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{mobfriend.gender},#{@adjective_arr.sample},face", width: '100%') %>
             <% else %>
               <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
             <% end %>

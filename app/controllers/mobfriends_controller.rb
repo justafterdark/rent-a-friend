@@ -19,6 +19,7 @@ class MobfriendsController < ApplicationController
 
   # READ: index & show
   def index
+    @adjective_arr = %w[young old slim fat tall chinese asian african european happy sad angry gangster]
   end
 
   def show
