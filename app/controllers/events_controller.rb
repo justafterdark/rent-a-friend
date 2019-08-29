@@ -3,15 +3,18 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    @events = policy_scope(Event).order(created_at: :desc)
   end
 
   def show
+    authorize @event
     @date = format_datetime(@event.datetime)
   end
 
   # form only
   def new
     @event = Event.new
+    authorize @event
     @categories = ["wedding", "birthday", "social"]
   end
 
@@ -19,6 +22,7 @@ class EventsController < ApplicationController
   def create
     # pass strong params into Event.new
     @event = Event.new(event_params)
+    authorize @event
     @event.user = current_user
     if @event.save
       redirect_to event_path(@event)
@@ -34,10 +38,16 @@ class EventsController < ApplicationController
   end
 
   def update
-    redirect_to event_path if @event.update(event_params)
+    authorize @event
+    if @event.update(event_params)
+      redirect_to event_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    authorize @event
     @event.destroy
     redirect_to events_path
   end
