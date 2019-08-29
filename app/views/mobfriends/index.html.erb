@@ -1,46 +1,44 @@
 <%= render 'shared/navbar' %>
-<h1 class='text-center my-5'>Select a Mobfriend</h1>
-<div class="mobfriends-container container">
-  <div class="row">
-    <% @mobfriends.each do |mobfriend| %>
-    <div class="col-sm-6 col-md-3">
-      <div class="mobfriend-card text-center bg-light rounded shadow-sm my-2">
-
-        <div class="mobfriend-card-image-container">
-          <%= link_to mobfriend_path(mobfriend) do %>
-            <% if mobfriend.photo.url.nil? %>
-              <%= image_tag('https://source.unsplash.com/600x400/?person,face', width: '100%') %>
-            <% else %>
-              <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
-            <% end %>
-          <% end %>
-        </div>
-
-        <div class="mobfriend-card-tagline my-2" style="height: 40px">
-          <p>
-            <%= mobfriend.tagline.truncate(50, separator: ' ') %>
-          </p>
-        </div>
-
-        <div class="mobfriend-card-details d-flex justify-content-around" >
-          <!-- <p>$<%= mobfriend.hourly_rate %>/hr</p> -->
-        </div>
-
-        <div class="w-100 d-flex">
-
-          <div>
-            <p class='m-0 px-4'>$<%= mobfriend.hourly_rate %>/hr</p>
-          </div>
-
-          <%= link_to mobfriend_path(mobfriend), class:"ml-2" do %>
-            <div class="w-100 bg-lg">
-              Profile
+<h1 class='text-center my-5'>Find a Mobfriend</h1>
+<div class="mobfriends-with-map-container">
+  <div class="mobfriends-container">
+    <div class="row">
+      <% @mobfriends.each do |mobfriend| %>
+        <div class="mobfriend-the-card col-sm-12 col-md-6 col-lg-4">
+          <div class="mobfriend-card text-center my-2">
+            <div class="mobfriend-card-image-container">
+              <%= link_to mobfriend_path(mobfriend) do %>
+                <% if mobfriend.photo.url.nil? %>
+                  <%= image_tag('https://source.unsplash.com/600x600/?person,face', width: '100%' ) %>
+                <% else %>
+                  <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
+                <% end %>
+              <% end %>
             </div>
-          <% end %>
-
+            <div class="mobfriend-card-tagline my-2">
+              <p>
+                <%= mobfriend.tagline.truncate(50, separator: ' ') %>
+              </p>
+            </div>
+            <div class="mobfriend-card-foot">
+              <div class="rate-wrap">
+                <p class="hourly-rate align-middle">$<%= mobfriend.hourly_rate %>/hr</p>
+              </div>
+              <div class="rate-wrap">
+                <%= link_to mobfriend_path(mobfriend), class: 'unstyle-links' do %>
+                  <div class="profile">
+                    Profile
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+      <% end %>
+    </div> </div>
+  <div class="map-container">
+    <p>map container here
+      <img id="map" src='https://api.mapbox.com/[...]?access_token=pk.eyJ1IjoidGVhbmoiLCJhIjoiY2p6Y2Fnc2d5MDNxbjNpb2Y1MWNkY2YyOCJ9.mMLeICRRU53MoCc_hbfZIw'>
+    </p>
   </div>
 </div>

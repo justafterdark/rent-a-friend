@@ -1,4 +1,59 @@
 .mobfriend-card{
-  background-color:$card-background
+  // background-color:$card-background;
+  border: 1px solid rgb(38,190,152);
+  border-radius: 6px;
+  box-shadow: 4px 4px 4px #A0A0A0;
+}
 
+.mobfriend-card-image-container{
+  // height: 800%;
+  border-radius: 10px;
+}
+
+.mobfriend-card-tagline{
+  margin: 5px;
+  font-size: 80%;
+  font-style: italic;
+  height: 50px;
+}
+
+.mobfriend-card-foot{
+  background-color: rgba(38,190,152, 0.2);
+  height: 50px;
+  width:100;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 0px 0px 6px 6px;
+}
+
+.rate-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.hourly-rate{
+  font-size: 80%;
+  color: #2698BE;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.profile{
+  font-size: 80%;
+  font-weight: 700;
+  color: #2698BE;
+  // outline: solid black;
+  border: 2px solid #26BE98;
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.profile:hover {
+  background-color: #26BE98;
+  color:white;
+  transition-duration: 0.9s;
+}
+
+.unstyle-links:hover{
+  text-decoration: none;
 }
