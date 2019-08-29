@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   def create
-    @event = current_user.events.first
+    @event = Event.find(params[:job][:event])
     @mobfriend = Mobfriend.find(params[:mobfriend_id])
     @job = Job.new(mobfriend: @mobfriend, event: @event)
     authorize @job

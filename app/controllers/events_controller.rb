@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   def show
     authorize @event
     @date = format_datetime(@event.datetime)
+    @total_cost = total_jobs_cost(@event.jobs)
   end
 
   # form only
@@ -77,5 +78,13 @@ class EventsController < ApplicationController
       suffix = 'PM'
     end
     "#{date}, #{hour}:#{min} #{suffix}"
+  end
+
+  def total_jobs_cost(jobs)
+    total_cost = 0
+    jobs.each do |job|
+      total_cost += job.mobfriend.hourly_rate
+    end
+    return total_cost
   end
 end

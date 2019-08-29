@@ -1,4 +1,3 @@
-<%= render 'shared/navbar' %>
 <h1 class='text-center my-5'>Select a Mobfriend</h1>
 <div class="mobfriends-container container">
   <div class="row">
@@ -31,9 +30,7 @@
           <div class="btn btn-info">
             <%= link_to 'View', mobfriend_path(mobfriend) %>
           </div>
-          <%= simple_form_for [mobfriend, @job] do |f| %>
-          <%= f.button :submit, value: 'Add to booking', class: 'btn btn-primary' %>
-          <% end %>
+          <%= link_to 'Add to Booking', mobfriend_your_events_path(mobfriend), class: 'btn btn-info' %>
         </div>
       </div>
     </div>

@@ -1,0 +1,27 @@
+<div class="section">
+  <div class="subheader">
+    <p>Events pending</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% @pending_events.each do |event| %>
+        <div class="col-lg-4">
+          <%= image_tag("https://source.unsplash.com/600x400/?#{event.event_type}", width: '100%') %>
+        </div>
+        <div class="col-lg-8 my-5">
+          <ul>
+            <li>Type: <%= event.event_type %></li>
+            <li>Time: <%= "#{event.datetime.hour}:#{event.datetime.min}" %></li>
+            <li>Location: <%= event.event_location %></li>
+            <li>Status: Unconfirmed</li>
+            <%= simple_form_for event do |f| %>
+            <%= f.hidden_field :confirmed, value: true %>
+            <%= f.button :submit, class: 'btn btn-primary my-5' %>
+            <% end %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
