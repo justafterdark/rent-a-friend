@@ -5,9 +5,11 @@ class MobfriendsController < ApplicationController
   # CREATE: new (form) & create
   def new
     @mobfriend = Mobfriend.new
+    authorize @mobfriend
   end
 
   def create
+    authorize @mobfriend
     @mobfriend = Mobfriend.new(mobfriend_new_params)
     @mobfriend.user = current_user
     if @mobfriend.save
@@ -19,11 +21,13 @@ class MobfriendsController < ApplicationController
 
   # READ: index & show
   def index
+    @mobfriends = policy_scope(Mobfriend).order(created_at: :desc)
     @adjective_arr = %w[young old slim fat tall chinese asian african european happy sad angry gangster]
     @job = Job.new
   end
 
   def show
+    authorize @mobfriend
     @job = Job.new
   end
 
@@ -32,6 +36,7 @@ class MobfriendsController < ApplicationController
   end
 
   def update
+    authorize @mobfriend
     if @mobfriend.update(mobfriend_edit_params)
       redirect_to mobfriend_path(@mobfriend)
     else
@@ -41,6 +46,7 @@ class MobfriendsController < ApplicationController
 
   # DELETE: destroy
   def destroy
+    authorize @mobfriend
     @mobfriend.destroy
     # redirect_to dashboard_path(current_user)
   end
