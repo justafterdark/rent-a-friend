@@ -3,8 +3,15 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = policy_scope(Event).order(created_at: :desc)
-  end
+    @events = Events.geocoded #returns flats with coordinates
+
+    @markers = @events.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
+   end
 
   def show
     authorize @event
