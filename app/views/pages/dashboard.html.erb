@@ -1,0 +1,21 @@
+<div class="header">
+  <h1>Welcome to your dashboard</h1>
+</div>
+<%= render 'dashboard_buttons_bar' %>
+<% if @events.present? %>
+  <% if @pending_events.present? %>
+    <%= render 'dashboard_pending_events' %>
+  <% else %>
+    <%= render 'dashboard_confirmed_events' %>
+  <% end %>
+<% end %>
+<% if @mobfriend.present? %>
+  <% if @jobs.present? %>
+    <%= render 'dashboard_pending_jobs' %>
+  <% else %>
+    <%= render 'dashboard_add_jobs' %>
+  <% end %>
+<% end %>
+<% if @events.nil? && @mobfriend.nil?%>
+  <%= render 'dashboard_create_event_or_job' %>
+<% end %>

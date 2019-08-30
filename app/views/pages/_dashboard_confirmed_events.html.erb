@@ -1,0 +1,23 @@
+<div class="section">
+  <div class="subheader">
+    <p>Events confirmed</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% @confirmed_events.each do |event| %>
+        <div class="col-lg-4">
+          <%= image_tag("https://source.unsplash.com/600x400/?#{event.event_type}", width: '100%') %>
+        </div>
+        <div class="col-lg-8 my-5">
+          <ul>
+            <li>Type: <%= event.event_type %></li>
+            <li>Time: <%= "#{event.datetime.hour}:#{event.datetime.min}" %></li>
+            <li>Location: <%= event.event_location %></li>
+            <li>Status: Confirmed</li>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
