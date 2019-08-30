@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(version: 2019_08_29_153242) do
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "public", default: false
     t.float "latitude"
     t.float "longitude"
+    t.boolean "public", default: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
