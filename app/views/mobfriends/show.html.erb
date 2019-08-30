@@ -8,7 +8,7 @@
         <% if @mobfriend.photo.url.nil? %>
           <%= image_tag("https://source.unsplash.com/600x400/?#{@mobfriend.gender},face", width: '100%') %>
         <% else %>
-          <img src=<%= cl_image_path @mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
+          <img src=<%= cl_image_path @mobfriend.photo, crop: :fill %> alt=<%= @mobfriend.user.username %> style="width: 100%">
         <% end %>
       <% end %>
       <p><em>"<%= @mobfriend.tagline %>"</em></p>
