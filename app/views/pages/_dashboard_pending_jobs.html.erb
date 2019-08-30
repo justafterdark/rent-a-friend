@@ -1,31 +1,21 @@
-<div class="section">
-  <div class="subheader">
-    <p>Jobs pending</p>
-  </div>
-  <div class="container">
-    <div class="row">
-      <% @jobs.each.each do |job| %>
-        <div class="col-lg-4">
-          <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{job.event.event_type}", width: '100%') %>
-        </div>
-        <div class="col-lg-8 my-5">
-          <ul>
-            <li>Type: <%= job.event.event_type %></li>
-            <li>Time: <%= "#{job.event.datetime.hour}:#{job.event.datetime.min}" %></li>
-            <li>Location: <%= job.event.event_location %></li>
-            <% if job.accepted %>
-              <li>Status: You have accepted this job</li>
-            <% else %>
-              <li>Status: You have not accepted this job</li>
-              <%= simple_form_for job do |f| %>
-              <%= f.hidden_field :accepted, value: true %>
-              <%= f.button :submit, value: 'Accept', class: 'btn btn-primary my-5' %>
-              <% end %>
-            <% end %>
-            </li>
-          </ul>
-        </div>
+<% @jobs.each.each do |job| %>
+  <div class="col-lg-4">
+    <div class="details-container">
+      <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{job.mobfriend.gender},face", width: '100%') %>
+      <p><strong><%= job.event.event_type %></strong> at
+        <%= job.event.event_location %>,
+        <%= "#{job.event.datetime.hour}:#{job.event.datetime.min}" %>hrs</p>
+    </div>
+    <div class="buttons-container">
+      <% if job.accepted %>
+        <%= simple_form_for job do |f| %>
+          <%= f.hidden_field :accepted, value: true %>
+          <%= f.button :submit, value: 'Accept', class: 'btn btn-primary' %>
+        <% end %>
+      <% else %>
+        <div class="btn btn-success disabled">Confirmed</div>
       <% end %>
+      <%= link_to('View', event_path(job.event), class: 'btn btn-light') %>
     </div>
   </div>
-</div>
+<% end %>
