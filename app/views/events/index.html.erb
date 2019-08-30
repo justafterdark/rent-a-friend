@@ -1,27 +1,31 @@
 <div class="header">
   <h1>Event Index</h1>
 </div>
-<div class="container">
-  <% @events.each do |event| %>
-    <div class="row">
-      <div class="col-md-6 col-lg-4">
-        <div class="card"></div>
-        <ul>
-        <li>Event ID: <%= event.id  %></li>
-        <li>Event Description: <%= link_to event.description, event_path(event) %></li>
-        <li>Event User ID: <%= event.user_id %></li>
-        <li><%= event.datetime %></li>
-        <li>Event Confirmation: <%= event.confirmed  %></li>
-        </ul>
-        <% if current_user.mobfriend.present? && event.crowd.present? %>
-          <%= simple_form_for [@mobfriend, @job] do |f| %>
-          <%= f.hidden_field :event, value: event.id %>
-          <%= f.button :submit, value: 'Join Crowd', class: 'btn btn-primary' %>
+<div class="container_events_mapbox">
+  <div class="container">
+    <% @events.each do |event| %>
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="card"></div>
+          <ul>
+          <li>Event ID: <%= event.id  %></li>
+          <li>Event Description: <%= link_to event.description, event_path(event) %></li>
+          <li>Event User ID: <%= event.user_id %></li>
+          <li><%= event.datetime %></li>
+          <li>Event Confirmation: <%= event.confirmed  %></li>
+          </ul>
+          <% if current_user.mobfriend.present? && event.crowd.present? %>
+            <%= simple_form_for [@mobfriend, @job] do |f| %>
+            <%= f.hidden_field :event, value: event.id %>
+            <%= f.button :submit, value: 'Join Crowd', class: 'btn btn-primary' %>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="mapbox_container">
+    <p> place mapbox here! </p>
+  </div>
 </div>
-
 
