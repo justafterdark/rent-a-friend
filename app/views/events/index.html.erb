@@ -6,12 +6,11 @@
     <div class="row d-flex">
       <div class="events-container col-lg-6">
         <% @events.each do |event| %>
-          <ul>
+          <ul class="card">
           <li>Event ID: <%= event.id  %></li>
           <li>Event Description: <%= link_to event.description, event_path(event) %></li>
-          <li>Event User ID: <%= event.user_id %></li>
+          <li>Location: <%= event.event_location %></li>
           <li><%= event.datetime %></li>
-          <li>Event Confirmation: <%= event.confirmed  %></li>
           </ul>
           <% if current_user.mobfriend.present? && event.crowd.present? %>
             <%= simple_form_for [@mobfriend, @job] do |f| %>
