@@ -20,7 +20,7 @@
           <li>Status: Unconfirmed</li>
           <%= simple_form_for @event do |f| %>
           <%= f.hidden_field :confirmed, value: true %>
-          <%= f.button :submit, class: 'btn btn-primary my-5' %>
+          <%= f.button :submit, value: 'Confirm', class: 'btn btn-primary my-5' %>
           <% end %>
         <% end %>
         </li>
