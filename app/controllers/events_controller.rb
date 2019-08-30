@@ -8,6 +8,13 @@ class EventsController < ApplicationController
       @mobfriend = current_user.mobfriend
       @job = Job.new
     end
+    @events = Event.geocoded #returns flats with coordinates
+    @markers = @events.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
   end
 
   def show
