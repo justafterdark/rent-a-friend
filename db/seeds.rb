@@ -20,13 +20,15 @@ puts 'Creating 10 events...'
     datetime: DateTime.now,
     event_type: 'wedding',
     description: 'big event',
-    event_location: 'Singapore',
+    event_location: %w(Orchard Chinatown Fullerton Lido).sample,
     meeting_location: 'Fullerton',
     public: true,
     confirmed: false,
     user: User.all.sample
     )
   event.save
+  crowd = Crowd.new(event: event, size:rand(5..99))
+  crowd.save
 end
 
 puts 'Creating 20 Mobfriend Users...'
