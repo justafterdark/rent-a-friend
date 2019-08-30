@@ -1,0 +1,11 @@
+.mobfriends-with-map-container{
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#map{
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
