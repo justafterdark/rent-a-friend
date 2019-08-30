@@ -1,0 +1,7 @@
+<div class="header">
+  <h1>Select Crowd size</h1>
+</div>
+<%= simple_form_for [@event, @crowd] do |f| %>
+<%= f.input :size %>
+<%= f.button :submit, value: 'Enlist Crowd' %>
+<% end %>

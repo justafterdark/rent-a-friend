@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_27_110429) do
+ActiveRecord::Schema.define(version: 2019_08_29_153242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "crowds", force: :cascade do |t|
+    t.bigint "event_id"
+    t.integer "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_crowds_on_event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
@@ -25,6 +33,7 @@ ActiveRecord::Schema.define(version: 2019_08_27_110429) do
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "public", default: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -34,6 +43,8 @@ ActiveRecord::Schema.define(version: 2019_08_27_110429) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "crowd_id"
+    t.index ["crowd_id"], name: "index_jobs_on_crowd_id"
     t.index ["event_id"], name: "index_jobs_on_event_id"
     t.index ["mobfriend_id"], name: "index_jobs_on_mobfriend_id"
   end
@@ -67,7 +78,9 @@ ActiveRecord::Schema.define(version: 2019_08_27_110429) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "crowds", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "jobs", "crowds"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "mobfriends"
   add_foreign_key "mobfriends", "users"
