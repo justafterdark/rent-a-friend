@@ -3,10 +3,9 @@
 </div>
 <div class="container_events_mapbox">
   <div class="container">
-    <% @events.each do |event| %>
-      <div class="row">
-        <div class="col-md-6 col-lg-4">
-          <div class="card"></div>
+    <div class="row d-flex">
+      <div class="events-container col-lg-6">
+        <% @events.each do |event| %>
           <ul>
           <li>Event ID: <%= event.id  %></li>
           <li>Event Description: <%= link_to event.description, event_path(event) %></li>
@@ -20,12 +19,12 @@
             <%= f.button :submit, value: 'Join Crowd', class: 'btn btn-primary' %>
             <% end %>
           <% end %>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  <div class="mapbox_container">
-    <p> place mapbox here! </p>
+      <div class="container_mapbox col-lg-6">
+        <p> place mapbox here! </p>
+      </div>
+    </div>
   </div>
 </div>
 
