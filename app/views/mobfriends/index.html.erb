@@ -37,8 +37,12 @@
               <% end %>
     </div> </div>
   <div class="map-container">
-    <p>map container here
-      <img id="map" src='https://api.mapbox.com/[...]?access_token=pk.eyJ1IjoidGVhbmoiLCJhIjoiY2p6Y2Fnc2d5MDNxbjNpb2Y1MWNkY2YyOCJ9.mMLeICRRU53MoCc_hbfZIw'>
-    </p>
+    <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
   </div>
 </div>

@@ -21,6 +21,14 @@ class MobfriendsController < ApplicationController
 
   # READ: index & show
   def index
+   @events = Event.geocoded #returns flats with coordinates
+
+    @markers = @events.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
     @mobfriends = policy_scope(Mobfriend).order(created_at: :desc)
     @adjective_arr = %w[young old slim fat tall chinese asian african european happy sad angry gangster]
     @job = Job.new
