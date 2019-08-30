@@ -22,6 +22,7 @@ puts 'Creating 10 events...'
     description: 'big event',
     event_location: 'Singapore',
     meeting_location: 'Fullerton',
+    public: true,
     confirmed: false,
     user: User.all.sample
     )
