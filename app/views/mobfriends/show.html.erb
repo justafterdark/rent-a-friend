@@ -24,6 +24,7 @@
 <div class="buttons-container">
   <%= link_to 'View all Mobfriends', mobfriends_path, class: 'btn btn-info' %>
   <% if @mobfriend.user == current_user %>
+    <%= link_to 'My Dashboard', dashboard_path, class: 'btn btn-info' %>
     <%= link_to 'Edit Profile', edit_mobfriend_path(@mobfriend), class: 'btn btn-info' %>
   <% end %>
   <% if @mobfriend.user != current_user %>
