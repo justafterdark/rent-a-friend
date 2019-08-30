@@ -6,7 +6,7 @@
     <div class="row">
       <% @jobs.each.each do |job| %>
         <div class="col-lg-4">
-          <%= image_tag("https://source.unsplash.com/600x400/?#{job.event.event_type}", width: '100%') %>
+          <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{job.event.event_type}", width: '100%') %>
         </div>
         <div class="col-lg-8 my-5">
           <ul>
@@ -19,7 +19,7 @@
               <li>Status: You have not accepted this job</li>
               <%= simple_form_for job do |f| %>
               <%= f.hidden_field :accepted, value: true %>
-              <%= f.button :submit, class: 'btn btn-primary my-5' %>
+              <%= f.button :submit, value: 'Accept', class: 'btn btn-primary my-5' %>
               <% end %>
             <% end %>
             </li>

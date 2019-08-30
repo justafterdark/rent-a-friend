@@ -4,6 +4,10 @@ class EventsController < ApplicationController
 
   def index
     @events = policy_scope(Event).order(created_at: :desc)
+    if current_user.mobfriend.present?
+      @mobfriend = current_user.mobfriend
+      @job = Job.new
+    end
   end
 
   def show
@@ -50,14 +54,14 @@ class EventsController < ApplicationController
   def destroy
     authorize @event
     @event.destroy
-    redirect_to events_path
+    redirect_to dashboard_path
   end
 
   private
 
   # add strong event params
   def event_params
-    params.require(:event).permit(:datetime, :event_type, :description, :event_location, :meeting_location, :confirmed)
+    params.require(:event).permit(:datetime, :event_type, :description, :event_location, :meeting_location, :confirmed, :public)
   end
 
   def set_events

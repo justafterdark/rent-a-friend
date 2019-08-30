@@ -9,8 +9,8 @@ class MobfriendsController < ApplicationController
   end
 
   def create
-    authorize @mobfriend
     @mobfriend = Mobfriend.new(mobfriend_new_params)
+    authorize @mobfriend
     @mobfriend.user = current_user
     if @mobfriend.save
       redirect_to mobfriend_path(@mobfriend)

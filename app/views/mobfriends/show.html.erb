@@ -11,7 +11,7 @@
           <img src=<%= cl_image_path @mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
         <% end %>
       <% end %>
-      <p><%= @mobfriend.tagline %></p>
+      <p><em>"<%= @mobfriend.tagline %>"</em></p>
     </div>
     <div class="col-lg-8">
       <p><strong>Asking Rate: </strong><%= @mobfriend.hourly_rate %>/hour</p>
@@ -22,7 +22,9 @@
     </div>
   </div>
 <div class="buttons-container">
-  <%= link_to 'Back', mobfriends_path, class: 'btn btn-info' %>
-  <%= link_to 'Add to Booking', mobfriend_your_events_path(@mobfriend), class: 'btn btn-info' %>
+  <%= link_to 'View all Mobfriends', mobfriends_path, class: 'btn btn-info' %>
+  <% if @mobfriend.user != current_user %>
+    <%= link_to 'Add to booking', mobfriend_your_events_path(@mobfriend), class: 'btn btn-info' %>
+  <% end %>
 </div>
 </div>

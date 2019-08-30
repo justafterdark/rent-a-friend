@@ -6,7 +6,7 @@
     <div class="row">
       <% @confirmed_events.each do |event| %>
         <div class="col-lg-4">
-          <%= image_tag("https://source.unsplash.com/600x400/?#{event.event_type}", width: '100%') %>
+          <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{event.event_type}", width: '100%') %>
         </div>
         <div class="col-lg-8 my-5">
           <ul>

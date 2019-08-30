@@ -11,7 +11,10 @@
     <%= e.input :description %>
     <%= e.input :event_location %>
     <%= e.input :meeting_location %>
-    <% e.input :confirmed %>
-    <%= e.submit "add an event", class: "btn btn-primary" %>
+    <% if @event.id.present? %>
+      <%= e.input :confirmed %>
+    <% end %>
+    <%= e.input :public, label: 'Public (list event to rent a crowd)' %>
+    <%= e.submit "Create", class: "btn btn-primary" %>
   <% end %>
 </div>
