@@ -1,38 +1,36 @@
-<%= render 'shared/navbar' %>
-<h1 class='text-center my-5'>Find a Mobfriend</h1>
-<div class="mobfriends-with-map-container">
-  <div class="mobfriends-container">
-    <div class="row">
-      <% @mobfriends.each do |mobfriend| %>
-        <div class="mobfriend-the-card col-sm-12 col-md-6 col-lg-4">
-          <div class="mobfriend-card text-center my-2">
-            <div class="mobfriend-card-image-container">
-              <%= link_to mobfriend_path(mobfriend) do %>
-                <% if mobfriend.photo.url.nil? %>
-                  <%= image_tag('https://source.unsplash.com/600x600/?person,face', width: '100%' ) %>
-                <% else %>
-                  <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
-                <% end %>
-              <% end %>
-            </div>
-                        <div class="mobfriend-card-tagline my-2">
-              <p>
-                <%= mobfriend.tagline.truncate(50, separator: ' ') %>
-              </p>
-            </div>
-            <div class="mobfriend-card-foot">
-              <div class="rate-wrap">
-                <p class="hourly-rate align-middle">$<%= mobfriend.hourly_rate %>/hr</p>
-              </div>
-              <div class="rate-wrap">
-                <%= link_to mobfriend_path(mobfriend), class: 'unstyle-links' do %>
-                  <div class="profile">
-                    Profile
-                  </div>
-                <% end %>
-              </div>
-            </div>
+<h1 class='text-center my-5'>Select a Mobfriend</h1>
+<div class="mobfriends-container container">
+  <div class="row">
+    <% @mobfriends.each do |mobfriend| %>
+    <div class="col-md-6 col-lg-4">
+      <div class="mobfriend-card text-center bg-light shadow-sm my-3 pb-3">
+        <div class="mobfriend-card-image-container">
+          <%= link_to mobfriend_path(mobfriend) do %>
+            <% if mobfriend.photo.url.nil? %>
+              <%= image_tag("https://source.unsplash.com/600x400/?sig=#{rand(1..100)}/&#{mobfriend.gender},#{@adjective_arr.sample},face", width: '100%') %>
+            <% else %>
+              <img src=<%= cl_image_path mobfriend.photo, crop: :fill %> alt=<%= mobfriend.user.username %> style="width: 100%">
+            <% end %>
+          <% end %>
+        </div>
+        <div class="mobfriend-details">
+          <p><%= "#{mobfriend.first_name} #{mobfriend.last_name}" %></p>
+          <p>$<%= mobfriend.hourly_rate %>/hr</p>
+        </div>
+        <div class="mobfriend-card-tagline">
+          <p>
+            "<% if mobfriend.tagline.length > 65 %>
+            <%= mobfriend.tagline[0..65] %>...
+            <% else %>
+            <%= mobfriend.tagline %>
+            <% end %>"
+          </p>
+        </div>
+        <div class="mobfriend-buttons">
+          <div class="btn btn-info">
+            <%= link_to 'View', mobfriend_path(mobfriend) %>
           </div>
+          <%= link_to 'Add to Booking', mobfriend_your_events_path(mobfriend), class: 'btn btn-info' %>
         </div>
               <% end %>
     </div> </div>
