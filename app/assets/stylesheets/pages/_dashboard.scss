@@ -5,3 +5,12 @@
 .section {
   margin: 20px 0px;
 }
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.message-to-user {
+  font-size: 24px;
+}

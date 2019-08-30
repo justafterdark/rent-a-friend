@@ -1,21 +1,41 @@
 <div class="header">
-  <h1>Welcome to your dashboard</h1>
+  <h1><%= current_user.username %>'s dashboard</h1>
+</div>
+<div class="section" id="events-section">
+  <div class="subheader">
+    <p>Your events</p>
+  </div>
+  <div class="container">
+    <div class="row d-flex">
+      <% if @events.present? %>
+        <%= render 'dashboard_pending_events' %>
+        <%= render 'dashboard_confirmed_events' %>
+      <% else %>
+        <%= render 'dashboard_create_event' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="section" id="jobs-section">
+  <div class="subheader">
+    <p>Your gigs</p>
+  </div>
+  <div class="container">
+    <div class="row d-flex">
+      <% if @mobfriend.present? %>
+        <% if @jobs.present? %>
+          <%= render 'dashboard_pending_jobs' %>
+        <% else %>
+          <%= render 'dashboard_add_jobs' %>
+        <% end %>
+      <% else %>
+        <%= render 'dashboard_become_mobfriend' %>
+      <% end %>
+    </div>
+  </div>
+
+  <% if @events.nil? && @mobfriend.nil?%>
+    <%= render 'dashboard_create_event_or_job' %>
+  <% end %>
 </div>
 <%= render 'dashboard_buttons_bar' %>
-<% if @events.present? %>
-  <% if @pending_events.present? %>
-    <%= render 'dashboard_pending_events' %>
-  <% else %>
-    <%= render 'dashboard_confirmed_events' %>
-  <% end %>
-<% end %>
-<% if @mobfriend.present? %>
-  <% if @jobs.present? %>
-    <%= render 'dashboard_pending_jobs' %>
-  <% else %>
-    <%= render 'dashboard_add_jobs' %>
-  <% end %>
-<% end %>
-<% if @events.nil? && @mobfriend.nil?%>
-  <%= render 'dashboard_create_event_or_job' %>
-<% end %>

@@ -33,6 +33,7 @@ class MobfriendsController < ApplicationController
 
   # UPDATE: edit (form) & update
   def edit
+    authorize @mobfriend
   end
 
   def update
